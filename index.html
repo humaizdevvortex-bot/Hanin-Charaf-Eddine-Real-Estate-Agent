@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var customFetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return customFetch || originalFetch;
+            },
+            set: function(val) {
+              customFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (err) {}
+
+        // Suppress unhandled errors originating from external browser extensions
+        window.addEventListener('error', function(e) {
+          if (
+            (e.message && e.message.indexOf('fetch') !== -1 && e.message.indexOf('getter') !== -1) ||
+            (e.filename && e.filename.indexOf('chrome-extension://') !== -1)
+          ) {
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            if (e.preventDefault) e.preventDefault();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <title>Hanin Charaf Eddine | Realtor | Keller Williams Coastal Properties</title>
+    <meta name="description" content="Official portfolio of Hanin Charaf Eddine, real estate professional affiliated with Keller Williams Coastal Properties serving Corona and Southern California. Dedicated buyer and seller advisory." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hanincharafeddine.com" />
+    <meta property="og:title" content="Hanin Charaf Eddine | Realtor | Keller Williams Coastal Properties" />
+    <meta property="og:description" content="Dedicated real estate guidance in Central Corona and Southern California. Documented transaction record and personalized client advocacy." />
+    <meta property="og:image" content="/images/hero-iris.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hanin Charaf Eddine | Realtor | Keller Williams Coastal Properties" />
+    <meta name="twitter:description" content="Dedicated real estate guidance in Central Corona and Southern California. Documented transaction record and personalized client advocacy." />
+    <meta name="twitter:image" content="/images/hero-iris.jpg" />
+
+    <!-- Favicon with H/C Monogram -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23111827'/><path d='M30 26 v48 M30 50 h24 M54 26 v48' stroke='%23C8A66B' stroke-width='7' stroke-linecap='round'/><path d='M76 34 A20 20 0 0 0 76 66' fill='none' stroke='%23C8A66B' stroke-width='6.5' stroke-linecap='round'/></svg>" />
+
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Hanin Charaf Eddine",
+      "image": "/images/hanin-portrait.jpg",
+      "telephone": "(657) 567-3640",
+      "memberOf": {
+        "@type": "RealEstateAgent",
+        "name": "Keller Williams Coastal Properties",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "6621 E Pacific Coast Hwy",
+          "addressLocality": "Long Beach",
+          "addressRegion": "CA",
+          "postalCode": "90803",
+          "addressCountry": "US"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Central Corona, California"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Corona, California"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Long Beach, California"
+        }
+      ],
+      "knowsAbout": ["Residential Real Estate", "Buyer Representation", "Single Family Homes", "Corona Real Estate"]
+    }
+    </script>
+  </head>
+  <body class="bg-[#F8F6F1] text-[#111827] antialiased selection:bg-[#C8A66B] selection:text-white">
+    <!-- Netlify form detection stub for static scrapers -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="service" />
+      <textarea name="message"></textarea>
+    </form>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
